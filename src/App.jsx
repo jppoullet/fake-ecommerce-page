@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
+import minusIcon from "../src/assets/ecommerce-product-page-main/images/icon-minus.svg";
 
 function App() {
   const [data, setData] = useState();
@@ -31,9 +32,21 @@ function App() {
     <div className="mx-5">
       <Navbar />
       <main className="bg-slate-600 font-kumbhSans">
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-2">
           {data?.map((d) => (
-            <div key={d.id}>{d.category}</div>
+            <div key={d.id}>
+              <img src={d.image} alt={d.title} />
+              <h2>{d.title}</h2>
+              <p>{d.description}</p>
+              <div className="flex justify-between">
+                <div>{d.price}</div>
+                <div>
+                  <div>{d.rating.rate}/5</div>
+                  <div>({d.rating.count})</div>
+                </div>
+              </div>
+              <img src={minusIcon} alt="" />
+            </div>
           ))}
         </div>
 
