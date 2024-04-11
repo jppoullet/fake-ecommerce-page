@@ -28,6 +28,10 @@ function App() {
     getProductData();
   }, []);
 
+  const clickHandler = (e) => {
+    console.log(e);
+  };
+
   return (
     <div className="mx-5">
       <Navbar />
@@ -39,7 +43,9 @@ function App() {
                 <img
                   src={d.image}
                   alt={d.title}
+                  key={d.id}
                   className="h-44 w-full object-contain"
+                  onClick={clickHandler}
                 />
               </div>
               <h2>{d.title}</h2>
