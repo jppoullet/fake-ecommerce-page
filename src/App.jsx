@@ -31,13 +31,19 @@ function App() {
   return (
     <div className="mx-5">
       <Navbar />
-      <main className="bg-slate-600 font-kumbhSans">
-        <div className="grid grid-cols-2">
+      <main className="font-kumbhSans my-20">
+        <div className="grid grid-cols-2 gap-6">
           {data?.map((d) => (
-            <div key={d.id}>
-              <img src={d.image} alt={d.title} />
+            <div key={d.id} className="border-2 border-black break-words">
+              <div className="">
+                <img
+                  src={d.image}
+                  alt={d.title}
+                  className="h-44 w-full object-contain"
+                />
+              </div>
               <h2>{d.title}</h2>
-              <p>{d.description}</p>
+              {/* <p>{d.description}</p> */}
               <div className="flex justify-between">
                 <div>{d.price}</div>
                 <div>
@@ -49,10 +55,6 @@ function App() {
             </div>
           ))}
         </div>
-
-        <button className="border-2 text-3xl" onClick={getProductData}>
-          Button
-        </button>
       </main>
     </div>
   );
