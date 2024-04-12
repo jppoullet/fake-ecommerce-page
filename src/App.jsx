@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product";
-import ItemPage from "./pages/ItemPage";
+import ProductPage from "./pages/ProductPage";
 
 function App() {
   const [data, setData] = useState();
@@ -36,7 +36,7 @@ function App() {
     <div className="mx-5 font-kumbhSans">
       <Navbar setRenderedData={setRenderedData} data={data} />
       <main className="my-20">
-        <ItemPage selectedProduct={selectedProduct} />
+        <ProductPage selectedProduct={selectedProduct} />
         <Product
           renderedData={renderedData}
           setSelectedProduct={setSelectedProduct}
