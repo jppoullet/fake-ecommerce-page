@@ -3,12 +3,25 @@ import menuIcon from "../assets/ecommerce-product-page-main/images/icon-menu.svg
 import cartIcon from "../assets/ecommerce-product-page-main/images/icon-cart.svg";
 import acctImage from "../assets/ecommerce-product-page-main/images/image-avatar.png";
 
-const Navbar = () => {
+const Navbar = ({ setRenderedData, data }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuHandler = () => {
     setIsOpen(!isOpen);
     console.log(isOpen);
+  };
+
+  const categoryHandler = (event) => {
+    setIsOpen(!isOpen);
+    console.log(event.target.id);
+    const selectedCategory = event.target.id;
+
+    const category = data.filter((d) => {
+      return d.category === selectedCategory;
+    });
+
+    setRenderedData(category);
+    console.log(category);
   };
 
   return (
@@ -37,16 +50,24 @@ const Navbar = () => {
         }`}
       >
         <li>
-          <a href="">Men</a>
+          <a onClick={categoryHandler} id="men's clothing">
+            Men
+          </a>
         </li>
         <li>
-          <a href="">Women</a>
+          <a onClick={categoryHandler} id="women's clothing">
+            Women
+          </a>
         </li>
         <li>
-          <a href="">Jewelry</a>
+          <a onClick={categoryHandler} id="jewelery">
+            Jewelry
+          </a>
         </li>
         <li>
-          <a href="">Electronics</a>
+          <a onClick={categoryHandler} id="electronics">
+            Electronics
+          </a>
         </li>
       </ul>
 
