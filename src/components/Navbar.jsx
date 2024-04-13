@@ -12,7 +12,7 @@ const Navbar = ({ setRenderedData, data }) => {
   };
 
   const categoryHandler = (event) => {
-    setIsOpen(!isOpen);
+    // setIsOpen(!isOpen);
     console.log(event.target.id);
     const selectedCategory = event.target.id;
 
@@ -72,13 +72,41 @@ const Navbar = ({ setRenderedData, data }) => {
       </ul>
 
       {/* Desktop Navbar */}
-      <div className="md:flex hidden fixed py-4 flex justify-between">
+      <div className="md:flex justify-between hidden fixed bg-white top-0 left-0 right-0 px-5 py-4 z-50">
         <div className="flex items-end gap-5 text-darkGrayishBlue">
-          <h1 className="text-3xl font-bold mr-6 text-black">JPs Store</h1>
-          <a href="">Men</a>
-          <a href="">Women</a>
-          <a href="">Jewelry</a>
-          <a href="">Electronics</a>
+          <h1 className="text-3xl font-bold mr-6 text-black cursor-pointer">
+            JPs Store
+          </h1>
+          <ul className="flex gap-5">
+            <li
+              className="cursor-pointer"
+              onClick={categoryHandler}
+              id="men's clothing"
+            >
+              Men
+            </li>
+            <li
+              className="cursor-pointer"
+              onClick={categoryHandler}
+              id="women's clothing"
+            >
+              Women
+            </li>
+            <li
+              className="cursor-pointer"
+              onClick={categoryHandler}
+              id="jewelery"
+            >
+              Jewelry
+            </li>
+            <li
+              className="cursor-pointer"
+              onClick={categoryHandler}
+              id="electronics"
+            >
+              Electronics
+            </li>
+          </ul>
         </div>
         <div className="flex items-center gap-5">
           <button>
