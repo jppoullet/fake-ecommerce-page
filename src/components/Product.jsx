@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import minusIcon from "../assets/ecommerce-product-page-main/images/icon-minus.svg";
 import plusIcon from "../assets/ecommerce-product-page-main/images/icon-plus.svg";
 import cartIcon from "../assets/ecommerce-product-page-main/images/icon-cart.svg";
 
 const Product = ({ renderedData, setSelectedProduct }) => {
+  const [amountValue, setAmountValue] = useState("");
+
   const clickHandler = (e) => {
     console.log(e);
     const item = e.target.id;
@@ -15,15 +17,17 @@ const Product = ({ renderedData, setSelectedProduct }) => {
     setSelectedProduct(dataItem);
   };
 
-  const plusHandler = (e) => {
+  const plusHandler = (e, index) => {
     let productId = e.target.id;
     let productInput = document.getElementById(`input${productId}`);
     console.log(productInput);
+    console.log(index);
+    setAmountValue(3);
   };
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-      {renderedData?.map((d) => (
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-10">
+      {renderedData?.map((d, index) => (
         <div key={d.id} className="break-words flex flex-col justify-between">
           <div className="">
             <img
@@ -49,16 +53,21 @@ const Product = ({ renderedData, setSelectedProduct }) => {
               <input
                 type="number"
                 placeholder="0"
-                value="0"
+                value={amountValue}
                 id={`input${d.id}`}
-                className="bg-gray-100 w-full text-center"
+                className="bg-gray-100 w-full text-center cursor-pointer"
+                onChange={(e) => {
+                  setAmountValue(e.target.value);
+                }}
               />
               <img
                 src={plusIcon}
                 alt="plusIcon"
                 id={d.id}
-                className="h-1/2 w-4 mx-2"
-                onClick={plusHandler}
+                className="h-1/2 w-4 mx-2 cursor-pointer"
+                onClick={(e) => {
+                  plusHandler(e, index);
+                }}
               />
             </div>
             <button className="flex justify-center bg-orange-400 w-full my-2 py-2 rounded-md gap-2 text-white drop-shadow-sm">
