@@ -19,10 +19,24 @@ const Product = ({ renderedData, setSelectedProduct }) => {
 
   const plusHandler = (e, index) => {
     let productId = e.target.id;
-    let productInput = document.getElementById(`input${productId}`);
-    console.log(productInput);
-    console.log(index);
-    setAmountValue(3);
+    let productInput = document.querySelectorAll("input")[index];
+    console.log(`value ${productInput.value}`);
+    productInput.value++;
+  };
+
+  const minusHandler = (e, index) => {
+    let productId = e.target.id;
+    let productInput = document.querySelectorAll("input")[index];
+    console.log(`value ${productInput.value}`);
+    if (productInput.value == 0) {
+      return;
+    } else {
+      productInput.value--;
+    }
+  };
+
+  const addToCartHandler = (e, index) => {
+    console.log(`add to cart ${index}`);
   };
 
   return (
@@ -34,11 +48,11 @@ const Product = ({ renderedData, setSelectedProduct }) => {
               src={d.image}
               alt={d.title}
               id={d.id}
-              className="h-44 w-full object-contain"
+              className="h-44 w-full object-contain cursor-pointer"
               onClick={clickHandler}
             />
           </div>
-          <h2 className="font-bold">{d.title}</h2>
+          <h2 className="font-bold cursor-pointer">{d.title}</h2>
           {/* <p>{d.description}</p> */}
           <div>
             <div className="flex justify-between my-2">
@@ -49,16 +63,19 @@ const Product = ({ renderedData, setSelectedProduct }) => {
               <div className="font-bold text-lg">${d.price}</div>
             </div>
             <div className="flex justify-between items-center w-full mx-auto bottom-0 bg-gray-100 my-2">
-              <img src={minusIcon} alt="minusIcon" className="h-1/2 w-4 mx-2" />
+              <img
+                src={minusIcon}
+                alt="minusIcon"
+                className="h-1/2 w-4 mx-2"
+                onClick={(e) => {
+                  minusHandler(e, index);
+                }}
+              />
               <input
                 type="number"
-                placeholder="0"
-                value={amountValue}
-                id={`input${d.id}`}
+                defaultValue="0"
+                id={d.id}
                 className="bg-gray-100 w-full text-center cursor-pointer"
-                onChange={(e) => {
-                  setAmountValue(e.target.value);
-                }}
               />
               <img
                 src={plusIcon}
@@ -70,7 +87,12 @@ const Product = ({ renderedData, setSelectedProduct }) => {
                 }}
               />
             </div>
-            <button className="flex justify-center bg-orange-400 w-full my-2 py-2 rounded-md gap-2 text-white drop-shadow-sm">
+            <button
+              className="flex justify-center bg-orange-400 w-full my-2 py-2 rounded-md gap-2 text-white drop-shadow-sm"
+              onClick={(e) => {
+                addToCartHandler(e, index);
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
