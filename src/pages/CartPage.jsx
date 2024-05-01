@@ -5,7 +5,7 @@ const CartPage = () => {
   return (
     <div className="font-kumbhSans">
       <Navbar />
-      CartPage
+      <h1 className="text-3xl my-20">cart page</h1>
     </div>
   );
 };

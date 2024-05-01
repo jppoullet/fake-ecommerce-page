@@ -3,18 +3,15 @@ import minusIcon from "../assets/ecommerce-product-page-main/images/icon-minus.s
 import plusIcon from "../assets/ecommerce-product-page-main/images/icon-plus.svg";
 import cartIcon from "../assets/ecommerce-product-page-main/images/icon-cart.svg";
 
-const Product = ({ renderedData, setSelectedProduct }) => {
+const Products = ({ renderedData, cartItems, setCartItems }) => {
   const [amountValue, setAmountValue] = useState("");
 
-  const clickHandler = (e) => {
-    console.log(e);
+  const productClickHandler = (e) => {
     const item = e.target.id;
-    console.log(item);
     const dataItem = renderedData.filter((d) => {
       return d.id == item;
     });
     console.log(dataItem);
-    setSelectedProduct(dataItem);
   };
 
   const plusHandler = (e, index) => {
@@ -35,9 +32,13 @@ const Product = ({ renderedData, setSelectedProduct }) => {
     }
   };
 
-  const addToCartHandler = (e, index) => {
-    console.log(`add to cart ${index}`);
+  const addToCartHandler = (e, index, product) => {
+    console.log(`add to cart ${product.title}`);
+    setCartItems((prevItems) => [...prevItems, product]);
+    // console.log(cartItems);
   };
+
+  // console.log(cartItems);
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-10">
@@ -49,7 +50,7 @@ const Product = ({ renderedData, setSelectedProduct }) => {
               alt={d.title}
               id={d.id}
               className="h-44 w-full object-contain cursor-pointer"
-              onClick={clickHandler}
+              onClick={productClickHandler}
             />
           </div>
           <h2 className="font-bold cursor-pointer">{d.title}</h2>
@@ -66,7 +67,7 @@ const Product = ({ renderedData, setSelectedProduct }) => {
               <img
                 src={minusIcon}
                 alt="minusIcon"
-                className="h-1/2 w-4 mx-2"
+                className="h-1/2 w-4 mx-2 cursor-pointer"
                 onClick={(e) => {
                   minusHandler(e, index);
                 }}
@@ -90,7 +91,7 @@ const Product = ({ renderedData, setSelectedProduct }) => {
             <button
               className="flex justify-center bg-orange-400 w-full my-2 py-2 rounded-md gap-2 text-white drop-shadow-sm"
               onClick={(e) => {
-                addToCartHandler(e, index);
+                addToCartHandler(e, index, d);
               }}
             >
               <svg
@@ -110,4 +111,4 @@ const Product = ({ renderedData, setSelectedProduct }) => {
   );
 };
 
-export default Product;
+export default Products;

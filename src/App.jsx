@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { CartContext } from "./components/Context";
 import Navbar from "./components/Navbar";
-import Product from "./components/Product";
-import ProductPage from "./pages/ProductPage";
+import Products from "./components/Products";
 
 function App() {
   const [data, setData] = useState();
   const [renderedData, setRenderedData] = useState();
-  const [selectedProduct, setSelectedProduct] = useState();
+  const [cartItems, setCartItems] = useState([]);
 
   const getProductData = async () => {
     try {
@@ -34,14 +34,16 @@ function App() {
 
   return (
     <div className="mx-5 font-kumbhSans">
-      <Navbar setRenderedData={setRenderedData} data={data} />
-      <main className="my-20">
-        <ProductPage selectedProduct={selectedProduct} />
-        <Product
-          renderedData={renderedData}
-          setSelectedProduct={setSelectedProduct}
-        />
-      </main>
+      <CartContext.Provider value={cartItems}>
+        <Navbar setRenderedData={setRenderedData} data={data} />
+        <main className="my-20">
+          <Products
+            renderedData={renderedData}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
+          />
+        </main>
+      </CartContext.Provider>
     </div>
   );
 }

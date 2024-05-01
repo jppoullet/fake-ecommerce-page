@@ -134,7 +134,7 @@ const Navbar = ({ setRenderedData, data }) => {
         </div>
         <div className="flex items-center gap-5">
           {/* Cart Button */}
-          <Link to="/Cart">
+          <Link to="/CartPage">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="22"

@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
+import { CartContext } from "./components/Context";
 
 import "./index.css";
 
@@ -15,8 +16,11 @@ const router = createBrowserRouter([
     errorElement: <NotFoundPage />,
   },
   {
-    path: "/Cart",
+    path: "/CartPage",
     element: <CartPage />,
+  },
+  {
+    path: "/product",
   },
 ]);
 
