@@ -99,7 +99,7 @@ const Navbar = ({ setRenderedData, data }) => {
       <div className="md:flex justify-between hidden fixed bg-white top-0 left-0 right-0 px-5 py-4 z-50">
         <div className="flex items-end gap-5 text-darkGrayishBlue">
           <h1 className="text-3xl font-bold mr-6 text-black cursor-pointer">
-            <a href="/">JPs Store</a>
+            <Link to="/">JPs Store</Link>
           </h1>
           <ul className="flex gap-5">
             <li
@@ -129,6 +129,14 @@ const Navbar = ({ setRenderedData, data }) => {
               id="electronics"
             >
               Electronics
+            </li>
+            <li
+              className="cursor-pointer mx-5 text-veryDarkBlue"
+              onClick={() => {
+                setRenderedData(data);
+              }}
+            >
+              Reset Filters
             </li>
           </ul>
         </div>

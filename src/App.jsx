@@ -1,48 +1,60 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
 import { CartContext } from "./components/Context";
-import Navbar from "./components/Navbar";
-import Products from "./components/Products";
+
+import CartPage from "./pages/CartPage.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
+import Root from "./pages/Root.jsx";
 
 function App() {
-  const [data, setData] = useState();
-  const [renderedData, setRenderedData] = useState();
   const [cartItems, setCartItems] = useState([]);
+  // const [data, setData] = useState();
+  // const [renderedData, setRenderedData] = useState();
 
-  const getProductData = async () => {
-    try {
-      const response = await fetch("https://fakestoreapi.com/products");
+  // const getProductData = async () => {
+  //   try {
+  //     const response = await fetch("https://fakestoreapi.com/products");
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch workout data");
-      }
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch workout data");
+  //     }
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      // Do something with the data
-      console.log(data);
+  //     // Do something with the data
+  //     console.log(data);
 
-      setData(data);
-      setRenderedData(data);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  //     setData(data);
+  //     setRenderedData(data);
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    getProductData();
-  }, []);
+  // useEffect(() => {
+  //   getProductData();
+  // }, []);
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Root />,
+      errorElement: <NotFoundPage />,
+    },
+    {
+      path: "/CartPage",
+      element: <CartPage />,
+    },
+    {
+      path: "/product",
+    },
+  ]);
 
   return (
     <div className="mx-5 font-kumbhSans">
-      <CartContext.Provider value={cartItems}>
-        <Navbar setRenderedData={setRenderedData} data={data} />
-        <main className="my-20">
-          <Products
-            renderedData={renderedData}
-            cartItems={cartItems}
-            setCartItems={setCartItems}
-          />
-        </main>
+      <CartContext.Provider value={{ cartItems, setCartItems }}>
+        <RouterProvider router={router} />
       </CartContext.Provider>
     </div>
   );

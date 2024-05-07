@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import minusIcon from "../assets/ecommerce-product-page-main/images/icon-minus.svg";
 import plusIcon from "../assets/ecommerce-product-page-main/images/icon-plus.svg";
 import cartIcon from "../assets/ecommerce-product-page-main/images/icon-cart.svg";
+import { CartContext } from "./Context";
 
-const Products = ({ renderedData, cartItems, setCartItems }) => {
+const Products = ({ renderedData }) => {
   const [amountValue, setAmountValue] = useState("");
+  const { cartItems, setCartItems } = useContext(CartContext);
 
   const productClickHandler = (e) => {
     const item = e.target.id;
@@ -35,10 +37,9 @@ const Products = ({ renderedData, cartItems, setCartItems }) => {
   const addToCartHandler = (e, index, product) => {
     console.log(`add to cart ${product.title}`);
     setCartItems((prevItems) => [...prevItems, product]);
-    // console.log(cartItems);
   };
 
-  // console.log(cartItems);
+  console.log(cartItems);
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-10">
