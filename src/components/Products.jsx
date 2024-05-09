@@ -36,7 +36,11 @@ const Products = ({ renderedData }) => {
 
   const addToCartHandler = (e, index, product) => {
     console.log(`add to cart ${product.title}`);
-    setCartItems((prevItems) => [...prevItems, product]);
+    if (cartItems.includes(product)) {
+      console.log("Already in Cart");
+    } else {
+      setCartItems((prevItems) => [...prevItems, product]);
+    }
   };
 
   console.log(cartItems);
@@ -64,7 +68,7 @@ const Products = ({ renderedData }) => {
               </div>
               <div className="font-bold text-lg">${d.price}</div>
             </div>
-            <div className="flex justify-between items-center w-full mx-auto bottom-0 bg-gray-100 my-2">
+            {/* <div className="flex justify-between items-center w-full mx-auto bottom-0 bg-gray-100 my-2">
               <img
                 src={minusIcon}
                 alt="minusIcon"
@@ -88,7 +92,7 @@ const Products = ({ renderedData }) => {
                   plusHandler(e, index);
                 }}
               />
-            </div>
+            </div> */}
             <button
               className="flex justify-center bg-orange-400 w-full my-2 py-2 rounded-md gap-2 text-white drop-shadow-sm"
               onClick={(e) => {
