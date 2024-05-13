@@ -16,23 +16,23 @@ const Products = ({ renderedData }) => {
     console.log(dataItem);
   };
 
-  const plusHandler = (e, index) => {
-    let productId = e.target.id;
-    let productInput = document.querySelectorAll("input")[index];
-    console.log(`value ${productInput.value}`);
-    productInput.value++;
-  };
+  // const plusHandler = (e, index) => {
+  //   let productId = e.target.id;
+  //   let productInput = document.querySelectorAll("input")[index];
+  //   console.log(`value ${productInput.value}`);
+  //   productInput.value++;
+  // };
 
-  const minusHandler = (e, index) => {
-    let productId = e.target.id;
-    let productInput = document.querySelectorAll("input")[index];
-    console.log(`value ${productInput.value}`);
-    if (productInput.value == 0) {
-      return;
-    } else {
-      productInput.value--;
-    }
-  };
+  // const minusHandler = (e, index) => {
+  //   let productId = e.target.id;
+  //   let productInput = document.querySelectorAll("input")[index];
+  //   console.log(`value ${productInput.value}`);
+  //   if (productInput.value == 0) {
+  //     return;
+  //   } else {
+  //     productInput.value--;
+  //   }
+  // };
 
   const addToCartHandler = (e, index, product) => {
     console.log(`add to cart ${product.title}`);
@@ -66,7 +66,7 @@ const Products = ({ renderedData }) => {
                 <div className="">{d.rating.rate}/5</div>
                 <div>({d.rating.count})</div>
               </div>
-              <div className="font-bold text-lg">${d.price}</div>
+              <div className="font-bold text-lg">${d.price.toFixed(2)}</div>
             </div>
             {/* <div className="flex justify-between items-center w-full mx-auto bottom-0 bg-gray-100 my-2">
               <img
