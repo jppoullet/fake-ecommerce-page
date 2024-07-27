@@ -48,7 +48,7 @@ const Navbar = ({ setRenderedData, data }) => {
             <img src={menuIcon} alt="menuButton" onClick={menuHandler} />
           </button>
           <h1 className="text-xl font-bold">
-            <Link to="/">JPs Store</Link>
+            <a href="/">JPs Store</a>
           </h1>
         </div>
 
@@ -118,10 +118,10 @@ const Navbar = ({ setRenderedData, data }) => {
           <ul className="flex gap-5">
             <li
               className="cursor-pointer"
-              onClick={categoryHandler}
+              // onClick={categoryHandler}
               id="men's clothing"
             >
-              Men
+              <Link to="/Men">Men</Link>
             </li>
             <li
               className="cursor-pointer"

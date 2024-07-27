@@ -5,7 +5,6 @@ import cartIcon from "../assets/ecommerce-product-page-main/images/icon-cart.svg
 import { CartContext } from "./Context";
 
 const Products = ({ renderedData }) => {
-  const [amountValue, setAmountValue] = useState("");
   const { cartItems, setCartItems } = useContext(CartContext);
 
   const productClickHandler = (e) => {
@@ -16,24 +15,6 @@ const Products = ({ renderedData }) => {
     console.log(dataItem);
   };
 
-  // const plusHandler = (e, index) => {
-  //   let productId = e.target.id;
-  //   let productInput = document.querySelectorAll("input")[index];
-  //   console.log(`value ${productInput.value}`);
-  //   productInput.value++;
-  // };
-
-  // const minusHandler = (e, index) => {
-  //   let productId = e.target.id;
-  //   let productInput = document.querySelectorAll("input")[index];
-  //   console.log(`value ${productInput.value}`);
-  //   if (productInput.value == 0) {
-  //     return;
-  //   } else {
-  //     productInput.value--;
-  //   }
-  // };
-
   const addToCartHandler = (e, index, product) => {
     console.log(`add to cart ${product.title}`);
     if (cartItems.includes(product)) {
@@ -43,30 +24,33 @@ const Products = ({ renderedData }) => {
     }
   };
 
-  console.log(cartItems);
-
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-10">
-      {renderedData?.map((d, index) => (
-        <div key={d.id} className="break-words flex flex-col justify-between">
+      {renderedData?.map((product, index) => (
+        <div
+          key={product.id}
+          className="break-words flex flex-col justify-between"
+        >
           <div className="">
             <img
-              src={d.image}
-              alt={d.title}
-              id={d.id}
+              src={product.image}
+              alt={product.title}
+              id={product.id}
               className="h-44 w-full object-contain cursor-pointer"
               onClick={productClickHandler}
             />
           </div>
-          <h2 className="font-bold cursor-pointer">{d.title}</h2>
+          <h2 className="font-bold cursor-pointer">{product.title}</h2>
           {/* <p>{d.description}</p> */}
           <div>
             <div className="flex justify-between my-2">
               <div>
-                <div className="">{d.rating.rate}/5</div>
-                <div>({d.rating.count})</div>
+                <div className="">{product.rating.rate}/5</div>
+                <div>({product.rating.count})</div>
               </div>
-              <div className="font-bold text-lg">${d.price.toFixed(2)}</div>
+              <div className="font-bold text-lg">
+                ${product.price.toFixed(2)}
+              </div>
             </div>
             {/* <div className="flex justify-between items-center w-full mx-auto bottom-0 bg-gray-100 my-2">
               <img
@@ -96,7 +80,7 @@ const Products = ({ renderedData }) => {
             <button
               className="flex justify-center bg-orange-400 w-full my-2 py-2 rounded-md gap-2 text-white drop-shadow-sm"
               onClick={(e) => {
-                addToCartHandler(e, index, d);
+                addToCartHandler(e, index, product);
               }}
             >
               <svg
