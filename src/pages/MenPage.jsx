@@ -4,10 +4,11 @@ import { ProductsContext } from "../components/Context";
 
 const MenPage = () => {
   const { renderedData } = useContext(ProductsContext);
-  const [menData, setMenData] = useState();
+  const [menData, setMenData] = useState(renderedData);
 
-  const categoryHandler = (renderedData) => {
-    const category = renderedData.filter((d) => {
+  const categoryHandler = (menData) => {
+    console.log(menData);
+    const category = menData?.filter((d) => {
       return d.category === "men's clothing";
     });
 
@@ -15,13 +16,14 @@ const MenPage = () => {
     console.log(category);
   };
 
-  console.log(renderedData);
-  // categoryHandler();
+  useEffect(() => {
+    categoryHandler();
+  }, []);
 
   return (
     <div className="mt-40">
       Men's Page
-      <Products renderedData={menData} />
+      {/* {menData && <Products renderedData={menData} />} */}
     </div>
   );
 };
