@@ -116,33 +116,17 @@ const Navbar = ({ setRenderedData, data }) => {
             <Link to="/">JPs Store</Link>
           </h1>
           <ul className="flex gap-5">
-            <li
-              className="cursor-pointer"
-              // onClick={categoryHandler}
-              id="men's clothing"
-            >
+            <li className="cursor-pointer" id="men's clothing">
               <Link to="/Men">Men</Link>
             </li>
-            <li
-              className="cursor-pointer"
-              onClick={categoryHandler}
-              id="women's clothing"
-            >
-              Women
+            <li className="cursor-pointer" id="women's clothing">
+              <Link to="/Women">Women</Link>
             </li>
-            <li
-              className="cursor-pointer"
-              onClick={categoryHandler}
-              id="jewelery"
-            >
-              Jewelry
+            <li className="cursor-pointer" id="jewelery">
+              <Link to="/Jewelry">Jewelry</Link>
             </li>
-            <li
-              className="cursor-pointer"
-              onClick={categoryHandler}
-              id="electronics"
-            >
-              Electronics
+            <li className="cursor-pointer" id="electronics">
+              <Link to="/Electronics">Electronics</Link>
             </li>
             <li
               className="cursor-pointer mx-5 text-veryDarkBlue"
