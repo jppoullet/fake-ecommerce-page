@@ -7,7 +7,6 @@ const MenPage = () => {
   const [menData, setMenData] = useState(renderedData);
 
   const categoryHandler = () => {
-    console.log(menData);
     const category = menData?.filter((d) => {
       return d.category === "men's clothing";
     });
@@ -23,7 +22,7 @@ const MenPage = () => {
   // categoryHandler();
 
   return (
-    <div className="mt-40">
+    <div className="mt-20">
       Men's Page
       {menData && <Products renderedData={menData} />}
     </div>

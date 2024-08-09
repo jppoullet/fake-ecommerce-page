@@ -75,37 +75,44 @@ const Navbar = ({ setRenderedData, data }) => {
       </div>
 
       <ul
-        className={`flex flex-col justify-evenly top-14 fixed bg-slate-200 left-0 right-0 pl-5 overflow-hidden transition-all ease-in duration-200 ${
-          isOpen ? "h-1/5" : "h-0"
+        className={`flex flex-col justify-evenly top-14 fixed z-50 bg-white left-0 right-0 pl-5 overflow-hidden transition-all ease-in duration-200 ${
+          isOpen ? "h-1/3" : "h-0"
         }`}
       >
         <li
           onClick={() => {
-            setRenderedData(data);
             setIsOpen(!isOpen);
           }}
         >
           <Link to="/">Home</Link>
         </li>
-        <li>
-          <a onClick={mobileCategoryHandler} id="men's clothing">
-            Men
-          </a>
+        <li
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          <Link to="/Men">Men's</Link>
         </li>
-        <li>
-          <a onClick={mobileCategoryHandler} id="women's clothing">
-            Women
-          </a>
+        <li
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          <Link to="/Women">Women</Link>
         </li>
-        <li>
-          <a onClick={mobileCategoryHandler} id="jewelery">
-            Jewelry
-          </a>
+        <li
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          <Link to="/Jewelry">Jewelry</Link>
         </li>
-        <li>
-          <a onClick={mobileCategoryHandler} id="electronics">
-            Electronics
-          </a>
+        <li
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          <Link to="/Electronics">Electronics</Link>
         </li>
       </ul>
 
@@ -127,14 +134,6 @@ const Navbar = ({ setRenderedData, data }) => {
             </li>
             <li className="cursor-pointer" id="electronics">
               <Link to="/Electronics">Electronics</Link>
-            </li>
-            <li
-              className="cursor-pointer mx-5 text-veryDarkBlue"
-              onClick={() => {
-                setRenderedData(data);
-              }}
-            >
-              Reset Filters
             </li>
           </ul>
         </div>
