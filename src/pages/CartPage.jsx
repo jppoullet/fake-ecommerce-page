@@ -8,12 +8,20 @@ const CartPage = () => {
 
   const totalPrice = cartItems.reduce((n, { price }) => n + price, 0);
   console.log(totalPrice);
+  console.log(cartItems);
+
+  // const quantity = cartItems.reduce((acc, currentValue) => {
+  //   acc[currentValue] = (acc[currentValue] || 0) + 1;
+  //   return acc;
+  // }, {});
+
+  // console.log(quantity);
 
   return (
     <div className="font-kumbhSans">
       <Navbar />
       <div className="flex flex-col justify-between mt-16">
-        <div className="flex justify-center gap-5 border border-red-400 py-3 my-10">
+        <div className="flex justify-center gap-5 py-3 my-10">
           <div className="font-bold">Subtotal:</div>
           <div>${totalPrice.toFixed(2)}</div>
         </div>
@@ -24,12 +32,23 @@ const CartPage = () => {
               className="flex justify-between items-center gap-10"
             >
               <div className="flex items-center gap-4">
-                <img
-                  src={c.image}
-                  alt={c.image}
-                  className="md:w-20 md:max-h-28 w-14 max-h-16"
-                />
-                <h2 className="md:text-lg text-sm">{c.title}</h2>
+                <div>
+                  <img
+                    src={c.image}
+                    alt={c.image}
+                    className="md:w-20 md:max-h-28 w-14 max-h-16"
+                  />
+                  <h2 className="md:text-lg text-sm">{c.title}</h2>
+                  <label htmlFor="qty">Quantity: </label>
+                  <input
+                    type="number"
+                    id="qty"
+                    value={c.qty}
+                    onChange={(e) =>
+                      setC({ ...c, qty: Number(e.target.value) })
+                    }
+                  ></input>
+                </div>
               </div>
               <div>${c.price.toFixed(2)}</div>
             </div>

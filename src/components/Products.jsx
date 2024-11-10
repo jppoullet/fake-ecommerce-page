@@ -15,12 +15,35 @@ const Products = ({ renderedData }) => {
     console.log(dataItem);
   };
 
+  // const addToCartHandler = (e, index, product) => {
+  //   console.log(`add to cart ${product.title}`);
+  //   console.log(product.id);
+  //   if (cartItems.includes(product.id)) {
+  //     console.log("Already in Cart");
+  //   } else {
+  //     setCartItems((prevItems) => [...prevItems, { ...product, qty: 1 }]);
+  //   }
+  // };
+
   const addToCartHandler = (e, index, product) => {
     console.log(`add to cart ${product.title}`);
-    if (cartItems.includes(product)) {
-      console.log("Already in Cart");
+    console.log(product.id);
+
+    const existingCartItemIndex = cartItems.findIndex(
+      (item) => item.id === product.id
+    );
+
+    if (existingCartItemIndex >= 0) {
+      // If the product is already in the cart, increment the quantity
+      const updatedCartItems = cartItems.map((item, idx) =>
+        idx === existingCartItemIndex ? { ...item, qty: item.qty + 1 } : item
+      );
+      setCartItems(updatedCartItems);
+      console.log("Quantity incremented");
     } else {
-      setCartItems((prevItems) => [...prevItems, product]);
+      // If the product is not in the cart, add it with qty 1
+      setCartItems((prevItems) => [...prevItems, { ...product, qty: 1 }]);
+      console.log("Added to cart");
     }
   };
 
