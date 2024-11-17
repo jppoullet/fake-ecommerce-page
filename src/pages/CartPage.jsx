@@ -3,20 +3,47 @@ import Navbar from "../components/Navbar";
 import { CartContext } from "../components/Context";
 
 const CartPage = () => {
-  const { cartItems } = useContext(CartContext);
-  const [quan, setQuan] = useState();
+  const { cartItems, setCartItems } = useContext(CartContext);
+
   // const [totalPrice, setTotalPrice] = useState(0);
 
   const totalPrice = cartItems.reduce((n, { price }) => n + price, 0);
   console.log(totalPrice);
   console.log(cartItems);
 
-  // const quantity = cartItems.reduce((acc, currentValue) => {
-  //   acc[currentValue] = (acc[currentValue] || 0) + 1;
-  //   return acc;
-  // }, {});
+  const increaseQtyHandler = (id) => {
+    console.log("increase");
+    // If the product is already in the cart, increment the quantity
+    const updatedCartItems = cartItems.map((item, idx) =>
+      item.id === id ? { ...item, qty: item.qty + 1 } : item
+    );
 
-  // console.log(quantity);
+    setCartItems(updatedCartItems);
+    console.log("Quantity incremented");
+  };
+
+  const decreaseQtyHandler = (c) => {
+    console.log("decrease");
+    // If the product is already in the cart, increment the quantity
+    const updatedCartItems = cartItems.map((item, idx) =>
+      item.id === c.id && c.qty > 0 ? { ...item, qty: item.qty - 1 } : item
+    );
+
+    setCartItems(updatedCartItems);
+    console.log("Quantity incremented");
+  };
+
+  const removeHandler = (c) => {
+    const updatedCartItems = cartItems;
+
+    const index = updatedCartItems.indexOf(c);
+    if (index > -1) {
+      updatedCartItems.splice(index, 1);
+    }
+
+    setCartItems(updatedCartItems);
+    console.log(updatedCartItems);
+  };
 
   return (
     <div className="font-kumbhSans">
@@ -45,28 +72,25 @@ const CartPage = () => {
                     <label htmlFor="qty">Quantity:</label>
                     <button
                       onClick={() => {
-                        c.qty = c.qty - 1;
-                        console.log(c.qty);
+                        decreaseQtyHandler(c);
                       }}
                     >
                       -
                     </button>
-                    <input
-                      className=" w-8 text-center"
-                      type="number"
-                      id="qty"
-                      value={c.qty}
-                      // onChange={(e) =>
-                      //   setC({ ...c, qty: Number(e.target.value) })
-                      // }
-                    ></input>
+                    <div>{c.qty}</div>
                     <button
                       onClick={() => {
-                        setQuan(c.qty + 1);
-                        console.log(quan);
+                        increaseQtyHandler(c.id);
                       }}
                     >
                       +
+                    </button>
+                    <button
+                      onClick={() => {
+                        removeHandler(c);
+                      }}
+                    >
+                      Remove
                     </button>
                   </div>
                 </div>

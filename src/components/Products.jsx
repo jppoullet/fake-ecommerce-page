@@ -38,7 +38,7 @@ const Products = ({ renderedData }) => {
       const updatedCartItems = cartItems.map((item, idx) =>
         idx === existingCartItemIndex ? { ...item, qty: item.qty + 1 } : item
       );
-      1;
+
       setCartItems(updatedCartItems);
       console.log("Quantity incremented");
     } else {
