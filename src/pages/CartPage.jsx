@@ -5,17 +5,15 @@ import { CartContext } from "../components/Context";
 const CartPage = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
 
-  // const [totalPrice, setTotalPrice] = useState(0);
-
   const totalPrice = cartItems.reduce((n, { price }) => n + price, 0);
   console.log(totalPrice);
   console.log(cartItems);
 
-  const increaseQtyHandler = (id) => {
+  const increaseQtyHandler = (c) => {
     console.log("increase");
     // If the product is already in the cart, increment the quantity
     const updatedCartItems = cartItems.map((item, idx) =>
-      item.id === id ? { ...item, qty: item.qty + 1 } : item
+      item.id === c.id ? { ...item, qty: item.qty + 1 } : item
     );
 
     setCartItems(updatedCartItems);
@@ -26,9 +24,7 @@ const CartPage = () => {
     console.log("decrease");
     // If the product is already in the cart, increment the quantity
     const updatedCartItems = cartItems.map((item, idx) =>
-      if (item.id === c.id && c.qty > 0) {
-        ...item, qty: item.qty - 1}
-      // item.id === c.id && c.qty > 0 ? { ...item, qty: item.qty - 1 } : item
+      item.id === c.id && c.qty > 0 ? { ...item, qty: item.qty - 1 } : item
     );
 
     setCartItems(updatedCartItems);
@@ -67,17 +63,28 @@ const CartPage = () => {
 
                   <div className="md:text-lg text-sm flex items-center gap-5">
                     <label htmlFor="qty">Quantity:</label>
-                    <button
-                      onClick={() => {
-                        decreaseQtyHandler(c);
-                      }}
-                    >
-                      -
-                    </button>
+                    {c.qty > 0 ? (
+                      <button
+                        onClick={() => {
+                          decreaseQtyHandler(c);
+                        }}
+                      >
+                        -
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          removeHandler(c);
+                        }}
+                      >
+                        Remove
+                      </button>
+                    )}
+
                     <div>{c.qty}</div>
                     <button
                       onClick={() => {
-                        increaseQtyHandler(c.id);
+                        increaseQtyHandler(c);
                       }}
                     >
                       +
@@ -92,7 +99,7 @@ const CartPage = () => {
                   </div>
                 </div>
               </div>
-              <div>${c.price.toFixed(2)}</div>
+              <div>${c.price}</div>
             </div>
           ))}
         </div>
