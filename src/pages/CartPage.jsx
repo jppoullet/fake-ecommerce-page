@@ -26,7 +26,9 @@ const CartPage = () => {
     console.log("decrease");
     // If the product is already in the cart, increment the quantity
     const updatedCartItems = cartItems.map((item, idx) =>
-      item.id === c.id && c.qty > 0 ? { ...item, qty: item.qty - 1 } : item
+      if (item.id === c.id && c.qty > 0) {
+        ...item, qty: item.qty - 1}
+      // item.id === c.id && c.qty > 0 ? { ...item, qty: item.qty - 1 } : item
     );
 
     setCartItems(updatedCartItems);
@@ -34,15 +36,10 @@ const CartPage = () => {
   };
 
   const removeHandler = (c) => {
-    const updatedCartItems = cartItems;
+    const updatedCartItems = cartItems.filter((item) => item.id !== c.id);
 
-    const index = updatedCartItems.indexOf(c);
-    if (index > -1) {
-      updatedCartItems.splice(index, 1);
-    }
-
-    setCartItems(updatedCartItems);
     console.log(updatedCartItems);
+    setCartItems(updatedCartItems);
   };
 
   return (
