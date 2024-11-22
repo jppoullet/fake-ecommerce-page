@@ -18,6 +18,7 @@ import MenPage from "./pages/MenPage.jsx";
 import WomenPage from "./pages/WomenPage.jsx";
 import JewelryPage from "./pages/JewelryPage.jsx";
 import Electronics from "./pages/Electronics.jsx";
+import ProductPage from "./pages/ProductPage.jsx";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -61,6 +62,8 @@ function App() {
               <Route path="/Women" element={<WomenPage />} />
               <Route path="/Jewelry" element={<JewelryPage />} />
               <Route path="/Electronics" element={<Electronics />} />
+              <Route path="/ProductPage/:id" element={<ProductPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Router>
         </CartContext.Provider>

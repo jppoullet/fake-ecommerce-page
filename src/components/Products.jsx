@@ -3,6 +3,7 @@ import minusIcon from "../assets/ecommerce-product-page-main/images/icon-minus.s
 import plusIcon from "../assets/ecommerce-product-page-main/images/icon-plus.svg";
 import cartIcon from "../assets/ecommerce-product-page-main/images/icon-cart.svg";
 import { CartContext } from "./Context";
+import { Link } from "react-router-dom";
 
 const Products = ({ renderedData }) => {
   const { cartItems, setCartItems } = useContext(CartContext);
@@ -10,20 +11,10 @@ const Products = ({ renderedData }) => {
   const productClickHandler = (e) => {
     const item = e.target.id;
     const dataItem = renderedData.filter((d) => {
-      return d.id == item;
+      return d.id === item;
     });
     console.log(dataItem);
   };
-
-  // const addToCartHandler = (e, index, product) => {
-  //   console.log(`add to cart ${product.title}`);
-  //   console.log(product.id);
-  //   if (cartItems.includes(product.id)) {
-  //     console.log("Already in Cart");
-  //   } else {
-  //     setCartItems((prevItems) => [...prevItems, { ...product, qty: 1 }]);
-  //   }
-  // };
 
   const addToCartHandler = (e, index, product) => {
     console.log(`add to cart ${product.title}`);
@@ -56,13 +47,15 @@ const Products = ({ renderedData }) => {
           className="break-words flex flex-col justify-between"
         >
           <div className="">
-            <img
-              src={product.image}
-              alt={product.title}
-              id={product.id}
-              className="h-44 w-full object-contain cursor-pointer"
-              onClick={productClickHandler}
-            />
+            <Link to={`/ProductPage/${product.id}`}>
+              <img
+                src={product.image}
+                alt={product.title}
+                id={product.id}
+                className="h-44 w-full object-contain cursor-pointer"
+                // onClick={productClickHandler}
+              />
+            </Link>
           </div>
           <h2 className="font-bold cursor-pointer">{product.title}</h2>
           {/* <p>{d.description}</p> */}

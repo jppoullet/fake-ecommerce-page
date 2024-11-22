@@ -19,12 +19,10 @@ const MenPage = () => {
     categoryHandler();
   }, []);
 
-  // categoryHandler();
-
   return (
     <div className="mt-20">
       Electronics
-      {electronicsData && <Products renderedData={electronicsData} />}
+      <Products renderedData={electronicsData} />
     </div>
   );
 };

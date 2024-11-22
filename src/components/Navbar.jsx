@@ -48,7 +48,7 @@ const Navbar = ({ setRenderedData, data }) => {
             <img src={menuIcon} alt="menuButton" onClick={menuHandler} />
           </button>
           <h1 className="text-xl font-bold">
-            <a href="/">JPs Store</a>
+            <Link to="/">Shop</Link>
           </h1>
         </div>
 
@@ -120,7 +120,7 @@ const Navbar = ({ setRenderedData, data }) => {
       <div className="md:flex justify-between hidden fixed bg-white top-0 left-0 right-0 px-5 py-4 z-50">
         <div className="flex items-end gap-5 text-darkGrayishBlue">
           <h1 className="text-3xl font-bold mr-6 text-black cursor-pointer">
-            <Link to="/">JPs Store</Link>
+            <Link to="/">Shop</Link>
           </h1>
           <ul className="flex gap-5">
             <li className="cursor-pointer" id="men's clothing">
