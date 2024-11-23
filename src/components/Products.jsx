@@ -1,7 +1,4 @@
 import React, { useContext, useState } from "react";
-import minusIcon from "../assets/ecommerce-product-page-main/images/icon-minus.svg";
-import plusIcon from "../assets/ecommerce-product-page-main/images/icon-plus.svg";
-import cartIcon from "../assets/ecommerce-product-page-main/images/icon-cart.svg";
 import { CartContext } from "./Context";
 import { Link } from "react-router-dom";
 
@@ -69,31 +66,7 @@ const Products = ({ renderedData }) => {
                 ${product.price.toFixed(2)}
               </div>
             </div>
-            {/* <div className="flex justify-between items-center w-full mx-auto bottom-0 bg-gray-100 my-2">
-              <img
-                src={minusIcon}
-                alt="minusIcon"
-                className="h-1/2 w-4 mx-2 cursor-pointer"
-                onClick={(e) => {
-                  minusHandler(e, index);
-                }}
-              />
-              <input
-                type="number"
-                defaultValue="0"
-                id={d.id}
-                className="bg-gray-100 w-full text-center cursor-pointer"
-              />
-              <img
-                src={plusIcon}
-                alt="plusIcon"
-                id={d.id}
-                className="h-1/2 w-4 mx-2 cursor-pointer"
-                onClick={(e) => {
-                  plusHandler(e, index);
-                }}
-              />
-            </div> */}
+
             <button
               className="flex justify-center bg-orange-400 w-full my-2 py-2 rounded-md gap-2 text-white drop-shadow-sm"
               onClick={(e) => {
