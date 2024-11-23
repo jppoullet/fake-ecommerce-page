@@ -62,7 +62,7 @@ const CartPage = () => {
           {cartItems.map((c) => (
             <div
               key={c.id}
-              className="flex justify-between items-start md:gap-10 border-b"
+              className="flex justify-between items-start md:gap-10 gap-4 border-b"
             >
               <div className="flex gap-4 w-full">
                 <img
@@ -108,18 +108,21 @@ const CartPage = () => {
                     </div>
 
                     <div className="flex justify-end">
-                      <button
+                      {/* <button
                         onClick={() => {
                           removeHandler(c);
                         }}
                       >
                         Remove
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="font-bold">${c.price.toFixed(2)}</div>
+              <div className="flex flex-col justify-end items-end">
+                <div className="font-bold">${c.price.toFixed(2)}</div>
+                <div className="">Delete</div>
+              </div>
             </div>
           ))}
         </div>
