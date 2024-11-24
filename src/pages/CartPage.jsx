@@ -62,14 +62,16 @@ const CartPage = () => {
           {cartItems.map((c) => (
             <div
               key={c.id}
-              className="flex justify-between items-start md:gap-10 gap-4 border-b"
+              className="flex justify-between md:gap-10 gap-4 border-b h-32"
             >
-              <div className="flex gap-4 w-full">
-                <img
-                  src={c.image}
-                  alt={c.image}
-                  className="md:w-20 md:max-h-28 w-20 max-h-28"
-                />
+              <div className="flex gap-4">
+                <div className="flex-none h-50">
+                  <img
+                    src={c.image}
+                    alt={c.image}
+                    className="object-contain md:w-20 md:max-h-28 w-full h-full"
+                  />
+                </div>
                 <div className="flex flex-col overflow-hidden gap-5">
                   <h2 className="md:text-lg text-sm font-bold">{c.title}</h2>
 
@@ -107,21 +109,21 @@ const CartPage = () => {
                       </div>
                     </div>
 
-                    <div className="flex justify-end">
-                      {/* <button
-                        onClick={() => {
-                          removeHandler(c);
-                        }}
-                      >
-                        Remove
-                      </button> */}
-                    </div>
+                    <div className="flex justify-end"></div>
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col justify-end items-end">
+              <div className="flex flex-col justify-between items-end">
                 <div className="font-bold">${c.price.toFixed(2)}</div>
-                <div className="">Delete</div>
+                <div className="">
+                  <button
+                    onClick={() => {
+                      removeHandler(c);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           ))}

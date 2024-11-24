@@ -14,7 +14,11 @@ const ProductPage = () => {
   return (
     <div className="mt-32 flex flex-col items-center gap-16">
       <p>{product.title}</p>
-      <img src={product.image} alt={product.title} className="size-72" />
+      <img
+        src={product.image}
+        alt={product.title}
+        className="object-contain size-60"
+      />
     </div>
   );
 };
