@@ -18,13 +18,13 @@ const Products = ({ renderedData }) => {
     console.log(product.id);
 
     const existingCartItemIndex = cartItems.findIndex(
-      (item) => item.id === product.id
+      (item) => item.id === product.id,
     );
 
     if (existingCartItemIndex >= 0) {
       // If the product is already in the cart, increment the quantity
       const updatedCartItems = cartItems.map((item, idx) =>
-        idx === existingCartItemIndex ? { ...item, qty: item.qty + 1 } : item
+        idx === existingCartItemIndex ? { ...item, qty: item.qty + 1 } : item,
       );
 
       setCartItems(updatedCartItems);
@@ -37,11 +37,11 @@ const Products = ({ renderedData }) => {
   };
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-10">
+    <div className="grid grid-cols-1 gap-8 pt-10 md:grid-cols-3 lg:grid-cols-4">
       {renderedData?.map((product, index) => (
         <div
           key={product.id}
-          className="break-words flex flex-col justify-between"
+          className="flex flex-col justify-between break-words border-2 p-2"
         >
           <div className="">
             <Link to={`/ProductPage/${product.id}`}>
@@ -49,26 +49,26 @@ const Products = ({ renderedData }) => {
                 src={product.image}
                 alt={product.title}
                 id={product.id}
-                className="h-44 w-full object-contain cursor-pointer"
+                className="h-44 w-full cursor-pointer object-contain"
                 // onClick={productClickHandler}
               />
             </Link>
           </div>
-          <h2 className="font-bold cursor-pointer">{product.title}</h2>
+          <h2 className="cursor-pointer font-bold">{product.title}</h2>
           {/* <p>{d.description}</p> */}
           <div>
-            <div className="flex justify-between my-2">
+            <div className="my-2 flex justify-between">
               <div>
-                <div className="">{product.rating.rate}/5</div>
-                <div>({product.rating.count})</div>
+                {/* <div className="">{product.rating.rate}/5</div>
+                <div>({product.rating.count})</div> */}
               </div>
-              <div className="font-bold text-lg">
+              <div className="text-lg font-bold">
                 ${product.price.toFixed(2)}
               </div>
             </div>
 
             <button
-              className="flex justify-center bg-orange-400 w-full my-2 py-2 rounded-md gap-2 text-white drop-shadow-sm"
+              className="my-2 flex w-full justify-center gap-2 rounded-md bg-orange-400 py-2 text-white drop-shadow-sm"
               onClick={(e) => {
                 addToCartHandler(e, index, product);
               }}

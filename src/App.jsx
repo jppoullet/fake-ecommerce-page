@@ -50,7 +50,7 @@ function App() {
   }, []);
 
   return (
-    <div className="mx-5 font-kumbhSans">
+    <div className="mx-5 font-kumbhSans ">
       <ProductsContext.Provider value={{ renderedData, setRenderedData }}>
         <CartContext.Provider value={{ cartItems, setCartItems }}>
           <Router>
