@@ -1,15 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import menuIcon from "../assets/ecommerce-product-page-main/images/icon-menu.svg";
 import cartIcon from "../assets/ecommerce-product-page-main/images/icon-cart.svg";
 import acctImage from "../assets/ecommerce-product-page-main/images/image-avatar.png";
 import { Link } from "react-router-dom";
 import { CartContext } from "./Context";
 
-const Navbar = ({ setRenderedData, data }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { cartItems, setCartItems } = useContext(CartContext);
+  // const { cartItems, setCartItems } = useContext(CartContext);
+  const [cartItems, setCartItems] = useState(() => {
+    const storageCartItems = localStorage.getItem("cart");
+    return storageCartItems ? JSON.parse(storageCartItems) : [];
+  });
 
-  const totalQty = cartItems.reduce((n, { qty }) => n + qty, 0);
+  let totalQty = 0;
+
+  useEffect(() => {
+    totalQty = cartItems.reduce((n, { qty }) => n + qty, 0);
+  }, [cartItems]);
 
   const menuHandler = () => {
     setIsOpen(!isOpen);
@@ -40,6 +48,8 @@ const Navbar = ({ setRenderedData, data }) => {
     setRenderedData(category);
     console.log(category);
   };
+
+  console.log(totalQty);
 
   return (
     <nav className="bg-white">

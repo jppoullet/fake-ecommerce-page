@@ -1,17 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "./Context";
-import { Link } from "react-router-dom";
+import { json, Link } from "react-router-dom";
 
 const Products = ({ renderedData }) => {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  // const { cartItems, setCartItems } = useContext(CartContext);
+  const [cartItems, setCartItems] = useState(() => {
+    const storageCartItems = localStorage.getItem("cart");
+    return storageCartItems ? JSON.parse(storageCartItems) : [];
+  });
 
-  const productClickHandler = (e) => {
-    const item = e.target.id;
-    const dataItem = renderedData.filter((d) => {
-      return d.id === item;
-    });
-    console.log(dataItem);
-  };
+  // const productClickHandler = (e) => {
+  //   const item = e.target.id;
+  //   const dataItem = renderedData.filter((d) => {
+  //     return d.id === item;
+  //   });
+  //   console.log(dataItem);
+  // };
 
   const addToCartHandler = (e, index, product) => {
     console.log(`add to cart ${product.title}`);
@@ -35,6 +39,12 @@ const Products = ({ renderedData }) => {
       console.log("Added to cart");
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  console.log(cartItems);
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-10">

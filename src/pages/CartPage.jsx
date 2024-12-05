@@ -1,10 +1,13 @@
 import React, { useContext, useState } from "react";
-import Navbar from "../components/Navbar";
 import { CartContext } from "../components/Context";
 import { Trash, PlusCircle, MinusCircle } from "@phosphor-icons/react";
 
 const CartPage = () => {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  // const { cartItems, setCartItems } = useContext(CartContext);
+  const [cartItems, setCartItems] = useState(() => {
+    const storageCartItems = localStorage.getItem("cart");
+    return storageCartItems ? JSON.parse(storageCartItems) : [];
+  });
 
   const totalPrice = cartItems.reduce(
     (n, { price, qty }) => n + price * qty,
@@ -49,7 +52,6 @@ const CartPage = () => {
 
   return (
     <div className="font-kumbhSans">
-      <Navbar />
       <div className="flex flex-col justify-between mt-16 px-4 md:px-24">
         <div className="flex justify-center gap-5 py-3 my-10">
           <div className="">Subtotal ({totalQty} items):</div>
