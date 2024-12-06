@@ -3,11 +3,11 @@ import { CartContext } from "./Context";
 import { json, Link } from "react-router-dom";
 
 const Products = ({ renderedData }) => {
-  // const { cartItems, setCartItems } = useContext(CartContext);
-  const [cartItems, setCartItems] = useState(() => {
-    const storageCartItems = localStorage.getItem("cart");
-    return storageCartItems ? JSON.parse(storageCartItems) : [];
-  });
+  const { cartItems, setCartItems } = useContext(CartContext);
+  // const [cartItems, setCartItems] = useState(() => {
+  //   const storageCartItems = localStorage.getItem("cart");
+  //   return storageCartItems ? JSON.parse(storageCartItems) : [];
+  // });
 
   // const productClickHandler = (e) => {
   //   const item = e.target.id;
@@ -39,10 +39,6 @@ const Products = ({ renderedData }) => {
       console.log("Added to cart");
     }
   };
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-  }, [cartItems]);
 
   console.log(cartItems);
 

@@ -21,9 +21,13 @@ import Electronics from "./pages/Electronics.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
   const [data, setData] = useState();
   const [renderedData, setRenderedData] = useState();
+
+  const [cartItems, setCartItems] = useState(() => {
+    const storageCartItems = localStorage.getItem("cart");
+    return storageCartItems ? JSON.parse(storageCartItems) : [];
+  });
 
   const getProductData = async () => {
     try {
@@ -48,6 +52,10 @@ function App() {
   useEffect(() => {
     getProductData();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   return (
     <div className="mx-5 font-kumbhSans">

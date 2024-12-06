@@ -7,17 +7,15 @@ import { CartContext } from "./Context";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // const { cartItems, setCartItems } = useContext(CartContext);
-  const [cartItems, setCartItems] = useState(() => {
-    const storageCartItems = localStorage.getItem("cart");
-    return storageCartItems ? JSON.parse(storageCartItems) : [];
-  });
+  const { cartItems, setCartItems } = useContext(CartContext);
+  // const [cartItems, setCartItems] = useState(() => {
+  //   const storageCartItems = localStorage.getItem("cart");
+  //   return storageCartItems ? JSON.parse(storageCartItems) : [];
+  // });
 
   let totalQty = 0;
 
-  useEffect(() => {
-    totalQty = cartItems.reduce((n, { qty }) => n + qty, 0);
-  }, [cartItems]);
+  totalQty = cartItems.reduce((n, { qty }) => n + qty, 0);
 
   const menuHandler = () => {
     setIsOpen(!isOpen);
