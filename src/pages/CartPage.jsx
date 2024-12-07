@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../components/Context";
 import { Trash, PlusCircle, MinusCircle } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
@@ -61,7 +62,7 @@ const CartPage = () => {
           <div className="cursor-pointer" onClick={clearCartHandler}>
             Clear Cart
           </div>
-          <div className="flex gap-5">
+          <div className="flex md:flex-row flex-col items-end md:gap-5">
             <div className="">Subtotal ({totalQty} items):</div>
             <div className="font-bold">${totalPrice.toFixed(2)}</div>
           </div>
@@ -77,14 +78,18 @@ const CartPage = () => {
             >
               <div className="flex gap-4">
                 <div className="flex-none h-50">
-                  <img
-                    src={c.image}
-                    alt={c.image}
-                    className="object-contain md:w-20 md:max-h-28 w-full h-full"
-                  />
+                  <Link to={`/ProductPage/${c.id}`}>
+                    <img
+                      src={c.image}
+                      alt={c.image}
+                      className="object-contain w-20 max-h-28"
+                    />
+                  </Link>
                 </div>
                 <div className="flex flex-col overflow-hidden gap-5">
-                  <h2 className="md:text-lg text-sm font-bold">{c.title}</h2>
+                  <h2 className="md:text-lg text-sm font-bold">
+                    <Link to={`/ProductPage/${c.id}`}>{c.title}</Link>
+                  </h2>
 
                   {/* Quantity and Remove Item Div */}
                   <div className="md:text-lg text-sm flex flex-col gap-5">

@@ -60,7 +60,9 @@ const Products = ({ renderedData }) => {
               />
             </Link>
           </div>
-          <h2 className="font-bold cursor-pointer">{product.title}</h2>
+          <h2 className="font-bold cursor-pointer">
+            <Link to={`/ProductPage/${product.id}`}>{product.title}</Link>
+          </h2>
           {/* <p>{d.description}</p> */}
           <div>
             <div className="flex justify-between my-2">
