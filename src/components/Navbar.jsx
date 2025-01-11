@@ -78,9 +78,9 @@ const Navbar = () => {
             </div>
           </Link>
           {/* account profile */}
-          <button>
+          <Link to="/AccountPage">
             <img src={acctImage} alt="acctImage" width={25} />
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -162,9 +162,9 @@ const Navbar = () => {
               {totalQty}
             </div>
           </Link>
-          <button>
+          <Link to="/AccountPage">
             <img src={acctImage} alt="acctImage" width={40} />
-          </button>
+          </Link>
         </div>
       </div>
     </nav>
