@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import supabase from "../config/supabaseClient";
 import Signup from "../components/Signup";
+import { Auth } from "@supabase/auth-ui-react";
 
 const AccountPage = () => {
   const [session, setSession] = useState(null);
@@ -20,9 +21,13 @@ const AccountPage = () => {
   }, []);
 
   if (!session) {
-    return <Auth supabaseClient={supabase} />;
+    return (
+      <div className="mt-40 w-1/3 mx-auto">
+        <Auth supabaseClient={supabase} />
+      </div>
+    );
   } else {
-    return <div>Logged in!</div>;
+    return <div className="mt-40">Logged in!</div>;
   }
   // return (
   //   <div className="mt-20">

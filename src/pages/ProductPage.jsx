@@ -34,7 +34,7 @@ const ProductPage = () => {
   if (!product) return <p className="mt-20">Product not found</p>;
 
   return (
-    <div className="mt-32 flex flex-col items-center">
+    <div className="mt-32 flex flex-col items-center gap-2">
       <p>{product.title}</p>
       <img
         src={product.image}
@@ -43,7 +43,7 @@ const ProductPage = () => {
       />
       <p>${product.price.toFixed(2)}</p>
       <button
-        className="flex justify-center bg-orange-400 w-full my-2 py-2 rounded-md gap-2 text-white drop-shadow-sm"
+        className="flex justify-center bg-orange-400 w-1/4 my-2 py-2 rounded-md gap-2 text-white drop-shadow-sm"
         onClick={(e) => {
           addToCartHandler(e, product);
         }}
