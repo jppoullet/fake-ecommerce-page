@@ -20,6 +20,12 @@ const AccountPage = () => {
     return () => subscription.unsubscribe();
   }, []);
 
+  const signOut = async () => {
+    const { data, error } = await supabase.auth.signOut();
+
+    console.log(data, error);
+  };
+
   if (!session) {
     return (
       <div className="mt-40 w-1/3 mx-auto">
@@ -27,7 +33,14 @@ const AccountPage = () => {
       </div>
     );
   } else {
-    return <div className="mt-40">Logged in!</div>;
+    return (
+      <div className="flex flex-col items-center mt-40">
+        <h1>Logged in!</h1>
+        <button onClick={signOut} className="border-2 p-2">
+          Log Out
+        </button>
+      </div>
+    );
   }
   // return (
   //   <div className="mt-20">
